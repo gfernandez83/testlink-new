@@ -43,7 +43,7 @@ end
 
 execute 'run-docker-compose' do
 	cwd	'/Docker'
-	command 'docker-compose up -d; sleep 330'
+	command 'docker-compose up -d'
 end
 
 template '/testlink/mariadb/mariadb/conf/my.cnf' do
