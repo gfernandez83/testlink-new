@@ -23,8 +23,6 @@ directory '/Docker/' do
 	mode	'0755'
 	action	:create
 end
-
-
 template '/Docker/docker-compose.yml' do
 	source	'testlink-docker-compose.erb'
 	owner	'root'
@@ -41,9 +39,11 @@ node['spiral']['testlinkdata'].each do |dir, path|
 	end
 end
 
-execute 'run-docker-compose' do
-	cwd	'/Docker'
-	command 'docker-compose up -d'
+directory '/testlink/mariadb/mariadb/conf' do
+	owner	'root'
+	group	'root'
+	mode	'0755'
+	action	:create
 end
 
 template '/testlink/mariadb/mariadb/conf/my.cnf' do
@@ -52,6 +52,11 @@ template '/testlink/mariadb/mariadb/conf/my.cnf' do
         group   'root'
         mode    '0700'
 	action	:create
+end
+
+execute 'run-docker-compose' do
+	cwd	'/Docker'
+	command 'docker-compose up -d'
 end
 
 #
