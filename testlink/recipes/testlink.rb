@@ -58,8 +58,14 @@ end
 execute 'run-docker-compose' do
 	cwd	'/Docker'
 	command 'docker-compose up -d'
+	notifies :run, execute['write-upload-area'], :immediately
 end
 
+
+execute 'write-upload-area' do
+	command 'chmod a+w /testlink/data/testlink/upload_area/'
+	action	:nothing
+end
 #
 # Testlink Backup
 # Note: Please add AWS secret key and access ID to server or provide IAM role to instance to have r/w access to main backup s3 bucket
@@ -79,10 +85,6 @@ directory '/testlink/mariadb/mariadb/backup' do
         group   'root'
         mode    '0755'
         action  :create
-end
-
-execute 'write-upload-area' do
-	command 'chmod a+w /testlink/data/testlink/upload_area/'
 end
 
 node['backup']['testlink'].each do |dir, path|
