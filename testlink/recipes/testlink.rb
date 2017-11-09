@@ -57,13 +57,8 @@ end
 
 execute 'run-docker-compose' do
 	cwd	'/Docker'
-	command 'docker-compose up -d; chmod a+w /testlink/data/testlink/upload_area/'
+	command 'docker-compose up -d'
 end
-
-#execute 'write-upload-area' do
-#	command 'chmod a+w /testlink/data/testlink/upload_area/'
-#	action	:nothing
-#end
 
 #
 # Testlink Backup
