@@ -12,7 +12,7 @@ default[:spiral][:testlink][:testlinkpass] = nil
 default[:spiral][:testlink][:testlinkmail] = 'user@example.com'
 default[:spiral][:testlink][:smtphost] = 'smtp.gmail.com'
 default[:spiral][:testlink][:smtpport] = '587'
-default[:spiral][:testlink][:smtpuser] = 'jenkins@mnltechnology.com'
+default[:spiral][:testlink][:smtpuser] = 'youremail@example.com'
 default[:spiral][:testlink][:smtppass] = nil
 default[:spiral][:testlink][:smtpconn] = 'tls'
 
